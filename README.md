@@ -248,12 +248,13 @@ module.controller('MyController', [
 Info about directives
 
 ## CSS
+We use SASS for our CSS which you can read more about at [http://sass-lang.com/guide](sass-lang.com/guide).
 
 ### General Rules
  * All properties should be alphabatized.
  * Use shorthand when possible
 
-```css
+```scss
 .foo {
     bottom: 0;
     color: #000;
@@ -269,7 +270,7 @@ Info about directives
 ### SASS Extend
 All `@extend` definitions should be at the top of the property list with a new line separating it from the native properties. If multiple `@extend` rules are used they should be in alphabetical order.
 
-```css
+```scss
 .foo {
     @extend .clearfix;
 
@@ -287,7 +288,7 @@ All `@extend` definitions should be at the top of the property list with a new l
 ### SASS Mixins
 Mixins should be included at the end of the property definition with a new line separating the mixins from the native properties. If multiple mixins are used they should be in alphabetical order.
 
-```css
+```scss
 .foo {
     bottom: 0;
     color: #000;
