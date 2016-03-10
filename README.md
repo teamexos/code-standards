@@ -247,5 +247,62 @@ module.controller('MyController', [
 ### Directives
 Info about directives
 
+## CSS
+
+### General Rules
+ * All properties should be alphabatized.
+ * Use shorthand when possible
+
+```css
+.foo {
+    bottom: 0;
+    color: #000;
+    display: block;
+    font-size: 12px;
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    width: 100px;
+}
+```
+
+### SASS Extend
+All `@extend` definitions should be at the top of the property list with a new line separating it from the native properties. If multiple `@extend` rules are used they should be in alphabetical order.
+
+```css
+.foo {
+    @extend .clearfix;
+
+    bottom: 0;
+    color: #000;
+    display: block;
+    font-size: 12px;
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    width: 100px;
+}
+```
+
+### SASS Mixins
+Mixins should be included at the end of the property definition with a new line separating the mixins from the native properties. If multiple mixins are used they should be in alphabetical order.
+
+```css
+.foo {
+    bottom: 0;
+    color: #000;
+    display: block;
+    font-size: 12px;
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    width: 100px;
+
+    @include bg-gradient-default();
+    @include translate(0, -50%);
+}
+```
+
 
 ## Code Reviews
+Info about code reviews
