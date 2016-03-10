@@ -128,8 +128,8 @@ Wrap components in an immediately executing function expression (IEFE), passing 
 ```
 
 ### Component Structure
- * New components should be as modular as possible.
- * Each component should be contained within it's own directory
+ * Components should be as modular as possible.
+ * Each component should be contained within it's own directory.
  * The name of the directory and it's files should match the name of the component in kebab-case.
 
 ```
@@ -143,8 +143,34 @@ Wrap components in an immediately executing function expression (IEFE), passing 
 ```
 
 The main JS file should be used to register the component, `module.config`, `module.run`, and if the component is a directive, `module.directive`.
+```javascript
+(function (angular) {
+    'use strict';
 
-Each component should be it's own Angular Module. The naming convention should be in UpperCamelCase with any parent modules separated with a period.
+    var module = angular.module('MyApp.PathDetails', []);
+
+    module.config([
+        function () {
+            ...
+        }
+    ]);
+
+    module.run([
+        function () {
+            ...
+        }
+    ]);
+
+    module.directive('someDirective', [
+        function () {
+            ...
+        }
+    ]);
+
+})(angular);
+```
+
+Each component should be it's own Angular module. The naming convention should be UpperCamelCase with any parent modules prefixed separated with a period.
 
 If the module has no dependencies an empty array on the same line should be used.
 ```javascript
@@ -165,7 +191,7 @@ All Angular modules should define their dependencies using array notation.
 module.controller('MyController', [
     'MyService',
     function (MyService) {
-    ...
+        ...
     }
 ]);
 ```
@@ -179,7 +205,7 @@ module.controller('MyController', [
         MyService,
         YourService
     ) {
-    ...
+        ...
     }
 ]);
 ```
@@ -195,7 +221,7 @@ module.controller('MyController', [
         MyService,
         YourService
     ) {
-    ...
+        ...
     }
 ]);
 ```
@@ -215,7 +241,7 @@ module.factory('MyService', [
         var MyService = {};
         
         MyService.getDetails = function () {
-        ...
+            ...
         };
         
         return MyService;
