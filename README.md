@@ -155,7 +155,7 @@ If the module has one or more dependencies they should be stacked on new lines l
 ```javascript
 var module = angular.module('ParentModule.ChildModule.GrandChildModule', [
     'ui.router',
-    'ui.bootstrap
+    'ui.bootstrap'
 ]);
 ```
 
