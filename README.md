@@ -248,7 +248,7 @@ module.controller('MyController', [
 Info about directives
 
 ## CSS
-We use SASS for our CSS which you can read more about at [http://sass-lang.com/guide](sass-lang.com/guide).
+We use SASS for our CSS which you can read more about at [sass-lang.com/guide](http://sass-lang.com/guide).
 
 ### General Rules
  * All properties should be alphabatized.
