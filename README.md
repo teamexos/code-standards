@@ -485,4 +485,4 @@ JT-1234: Ticket name
 ### Closing Reviews
 * A review can only be closed when all review comments have been addressed and at least two front-end developers have marked the review as complete.
 * The front-end lead is responsibile for closing reviews in their respective projects.
-
+* Once a review is closed the corresponding ticket should be marked as "Done" and any branches for the ticket should be merged.
