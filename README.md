@@ -40,53 +40,6 @@ Content within the element with stacked attributes should start at the same inde
 </div>
 ```
 
-### New Lines
-All tags and content should be surrounded by new blank lines.
-
-```html
-<div class="content">
-
-    <div class="container">
-
-        <div class="row">
-
-            <div class="col-md-12">
-
-               Foo
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-```
-
-The exception is if an element tag has no attributes and it's child content is text or template variable that does not cause the total line count to exceed 100 characters.
-
-**Good**
-```html
-<h3>Paths by Focus Area</h3>
-```
-
-**Bad**
-```html
-<h3 class="content-title text-uppercase">Paths by Focus Area</h3>
-```
-
-### Self Closing Tags
-In HTML5 the ending slash is optional in self-closing tags. We will not include the ending slash.
-
-```html
-<input type="text" name="name" value="John">
-
-<br>
-```
-
-A complete list of self-closing tags (aka void elements) can be [found here](http://w3c.github.io/html/syntax.html#void-elements).
-
-
 ### Template Variables
 Always include spaces between curly braces.
 ```html
@@ -148,10 +101,13 @@ var objects = [{
 
 ```
 
-## Angular
+## AngularJS
+
+### AngularJS 1.5+ (with ES6+)
+For AngularJS projects utilizing a version of AngularJS higher than 1.5 and a transpiler for using JavaScript ES6 or beyond, refer to [Todd Motto's AngularJS Styleguide](https://github.com/toddmotto/angularjs-styleguide).
 
 ### IIFE
-Wrap components in an immediately-invoked function expression (IIFE), passing in necessary global objects as parameters. Include the `'use strict'` expression to force strict mode.
+Wrap components in an immediately-invoked function expression (IIFE), passing in necessary global objects as parameters. Include the `'use strict'` expression to force strict mode. NOTE:  This is not necessary for projects using Babel/Webpack.
 
 ```javascript
 (function(angular) {
@@ -405,7 +361,6 @@ function Directive() {
 
 ### General Rules
 
- * All properties should be alphabatized.
  * Use shorthand when possible.
  * Wrap .scss files in a selector for that file.
 
