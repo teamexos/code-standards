@@ -528,7 +528,7 @@ function Directive() {
 ### General Rules
 
  * Use shorthand when possible.
- * Use camel case when naming classes
+ * Use kebab case when naming classes (example - `name-of-class`)
  * Wrap .scss files in a selector for that file.
 
 ```scss
