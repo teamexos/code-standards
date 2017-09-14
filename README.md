@@ -53,7 +53,6 @@ Always include spaces between curly braces.
  * Use camelCase for all variables
  * The ? and : in a ternary conditional must have space on both sides.
  * `if` / `else` / `for` / `while` / `try` blocks should always use braces and always go on multiple lines.
- * Always include a new line between a function declaration and the opening parenthesis. 
  * No space before opening parenthesis in function declaration.
  
 ```javascript
@@ -65,6 +64,20 @@ var myFunc = function(arg) {
     ...
 };
 ```
+
+### Recommendations
+ * When working in a project that utilizes the Babel transpiler, use string templating instead of concatenation whenever possible.
+
+ ```javascript
+ const path = `/api/${moduleName}/`
+ ```
+ * Use fat arrow functions whenever possible
+ * Don't use `for` loops unless absolutely necessary and instead use more a more declarative coding style (`map()`, `filter()`, `reduce()`)
+ * When using ES6 imports, only import what you will use.
+
+ ```javascript
+ import { autorun } from 'mobx'
+ ```
 
 ### Guidelines
  * Lines should not exceed 100 characters.
@@ -362,6 +375,7 @@ function Directive() {
 ### General Rules
 
  * Use shorthand when possible.
+ * Use camel case when naming classes
  * Wrap .scss files in a selector for that file.
 
 ```scss
