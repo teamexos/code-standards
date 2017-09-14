@@ -65,13 +65,13 @@ var myFunc = function(arg) {
 };
 ```
 
-### Recommendations
+### Recommendations (for Webpack/Babel projects)
  * When working in a project that utilizes the Babel transpiler, use string templating instead of concatenation whenever possible.
 
  ```javascript
  const path = `/api/${moduleName}/`
  ```
- * Use fat arrow functions whenever possible
+ * Use fat arrow functions whenever possible (`const nameList = itemList.map(item => item.name)`)
  * Don't use `for` loops unless absolutely necessary and instead use more a more declarative coding style (`map()`, `filter()`, `reduce()`)
  * When using ES6 imports, only import what you will use.
 
@@ -252,6 +252,30 @@ function Controller(
 
 ```
 
+The following is an example of how to do DI in a Babel/Webpack project such as the current version of Journey UI (use `ngInject`
+instead of `$inject()`).
+
+```javascript
+class OverviewController {
+
+    constructor(
+        $state,
+        $uibModal,
+        WorkoutDetailService,
+        WorkoutProgressService
+    ) {
+        'ngInject';
+
+        this.$state = $state;
+        this.$uibModal = $uibModal;
+        this.WorkoutDetailService = WorkoutDetailService;
+        this.WorkoutProgressService = WorkoutProgressService;
+    }
+    ...
+}
+```
+
+
 ### Routes ([ui-router](http://angular-ui.github.io/ui-router/site/#/api/ui.router))
 
 * URLs should end with a slash.
@@ -295,6 +319,51 @@ function Config($stateProvider) {
 
 ```
 
+The following is an example of how this can be accomplished in a Babel/Webpack project:
+
+
+```javascript
+import angular from 'angular';
+import component from './detail.component.js';
+import componentPrint from './detail-print.component.js';
+
+const detail = angular
+    .module('Journey.Workouts.Detail', [])
+    .component('workoutDetail', component)
+    .component('workoutDetailPrint', componentPrint)
+    .config(($stateProvider) => {
+        'ngInject';
+
+        $stateProvider.state('private.workouts.detail', {
+            abstract: true,
+            url:':workoutId/:phase/:week/:day',
+            template: '<ui-view autoscroll/>',
+            params: {
+                workoutId: null,
+                phase: { squash: true, value: null },
+                week: { squash: true, value: null },
+                day: { squash: true, value: null }
+            },
+            resolve: {
+                details: ($transition$, WorkoutDetailService) => (
+                    WorkoutDetailService.fetch($transition$.params().workoutId)
+                )
+            }
+        });
+
+        $stateProvider.state('private.workouts.detail.home', {
+            url: '/',
+            component: 'workoutDetail',
+            indexTemplate: {
+                bodyClass: 'workouts',
+                fullWidth: true,
+                pageTitle: 'Workout Library'
+            }
+        });
+
+        ...
+}
+```
 
 
 ### Services
@@ -319,6 +388,41 @@ function Service() {
 }
 ```
 
+* Create a service using an ES6 class when working in a Babel/Webpack AngularJS project.
+
+```javascript
+
+class WorkoutDetailService {
+
+    constructor(
+        $location,
+        $state,
+        $window,
+        $uibModal
+    ) {
+        'ngInject';
+
+        this.$location = $location;
+        this.$state = $state;
+        this.$window = $window;
+        this.$uibModal = $uibModal;
+    }
+
+    fetch(workoutId) {
+        if (['complementary', 'corrective'].indexOf(workoutId) > -1) {
+            return this.getMovement(workoutId);
+        } else {
+            return this.getWorkoutDetails(workoutId).then(::this.mergeProgress);
+        }
+    }
+
+    ...
+
+}
+
+export default WorkoutDetailService;
+```
+
 ### Controllers
 
 * Names should be UpperCamelCase and contain the `Controller` suffix.  `MyAppController`
@@ -340,6 +444,55 @@ function Controller(MyService) {
     
 }
 
+```
+
+* In Webpack/Babel AngularJS projects, use an ES6 class to create a controller.  Make sure to leave logic out of the constructor.
+
+```javascript
+class OverviewController {
+
+    constructor(
+        $state,
+        $uibModal,
+        WorkoutDetailService,
+        WorkoutProgressService
+    ) {
+        'ngInject';
+
+        this.$state = $state;
+        this.$uibModal = $uibModal;
+        this.WorkoutDetailService = WorkoutDetailService;
+        this.WorkoutProgressService = WorkoutProgressService;
+        this.selectedPhase = parseInt($state.params.phase);
+        this.selectedWeek = parseInt($state.params.week);
+        this.selectedDay = parseInt($state.params.day);
+        this.data = WorkoutDetailService.data;
+    }
+
+    $onInit() {
+
+        const equipment = this.WorkoutDetailService.getEquipment();
+        this.equipment = Array.isArray(mobx.toJS(equipment)) ? equipment : [];
+        this.isOverviewInit = true;
+
+        // Set up MobX reaction to handle changes to Workout Phase Progress Array
+        this.dispose = autorun(() => {
+            this.phases = this.initializePhasesArray(this.WorkoutDetailService.workoutProgress);
+            this.workoutIsComplete = this.WorkoutDetailService.workoutIsComplete;
+            this.busyCompleting = this.WorkoutProgressService.busy.setWorkoutComplete;
+            this.progressStats = this.WorkoutProgressService.getProgressStats(this.data.workout);
+            this.progressPct = this.progressStats.percentComplete;
+        });
+
+    }
+
+    $onDestroy() {
+        this.dispose();
+    }
+
+    ...
+
+}
 ```
 
 ### Directives
