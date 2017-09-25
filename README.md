@@ -602,6 +602,7 @@ JT-1234: Ticket name
  * Code reviews can be opened by appending `+EFE` to the end of a commit message or through JIRA.
  * Add any new code changes to an existing review instead of opening a new review.
  * Remove dist/build files from reviews.
+ * Add the FE tech lead for the project as one reviewer and an additional reviewer.  The second reviewer should be either another developer with relevant subject matter knowledge or the developer who you selected as a reviewer on a code review least recently.
 
 
 ### Closing Reviews
