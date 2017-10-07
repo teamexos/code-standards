@@ -595,6 +595,13 @@ JT-1234: Ticket name
 
 ```
 
+## The Process for Determining Whether or not to Add a New Library to Journey UI
+
+* Start a thread in the #fe-developers Slack channel so that we can discuss the inclusion of this library as a team. 
+    * Please state the reason why the library is needed (timeline, complexity or benefits from adding a library that is an industry standard and will be useful elsewhere in Journey UI)
+    * Include information about how much the vendor bundle size would be increased by the addition of the new library
+    * During this discussion, team members should be able to add their past experiences using the library and/or make alternate recommendation. 
+* Once the library has been informally approved in the previous step, add all of the relevant information (bundle size addition, etc.)to the relevant JIRA ticket.
 
 ## Code Reviews ([Crucible](https://crucible.teamexos.com/cru/browse/EFE))
  
