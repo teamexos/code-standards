@@ -114,6 +114,14 @@ var objects = [{
 
 ```
 
+## Vue.js
+
+### Vue.js Style Guide
+We follow style guide standards, all the way up to Priority C in the official [Vue.js Style Guide](https://vuejs.org/v2/style-guide/).  
+
+For state management in greenfield Vue.js projects, we utilize [Vuex](https://vuex.vuejs.org/en/). For projects that mix Vue.js and AngularJS, we utilize the [MobX](https://mobx.js.org/) library to add reactivity.
+
+
 ## AngularJS
 
 ### AngularJS 1.5+ (with ES6+)
