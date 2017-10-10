@@ -607,10 +607,11 @@ JT-1234: Ticket name
 
 * Start a thread in the #fe-developers Slack channel so that we can discuss the inclusion of this library as a team. 
     * Please state the reason why the library is needed (timeline, complexity or benefits from adding a library that is an industry standard and will be useful elsewhere in Journey UI)
-    * Include information about how much the vendor bundle size would be increased by the addition of the new library
+    * Include information about how much the vendor bundle size would be increased by the addition of the new library.  You can use the [Webpack Bundle Analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer) for this.
     * During this discussion, team members should be able to add their past experiences using the library and/or make alternate recommendation. 
     * When adding the library to the project's `package.json` file, make sure to use an exact version number or use `~` with the version number instead of `^`.
 * Once the library has been informally approved in the previous step, add all of the relevant information (bundle size addition, etc.) to the relevant JIRA ticket.
+* Be sure to try a Webpack build to confirm that the new module will build properly using `npm run build`.
 
 ## Code Reviews ([Crucible](https://crucible.teamexos.com/cru/browse/EFE))
  
