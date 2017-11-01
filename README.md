@@ -8,6 +8,16 @@ Please use the included [`.editorconfig`](.editorconfig) file to enforce the fol
  * No trailing whitespace, except for Markdown files (`.md`).
  * Add a new line to the end of files.
 
+## Prettier
+On projects that utilize Prettier (https://github.com/prettier/prettier) for code formatting, the JavaScript code will be automatically formatted to match standards using a pre-commit hook. The following is a listing of the Prettier option settings that are currently used:
+ * `print-width 100`
+ * `tab-width 4`
+ * `semi-colons true`
+ * `single-quote true`
+ * `trailing-comma es5`
+ * `bracket-spacing true`
+
+On projects that do not currently support the Prettier pre-commit hook, you can configure your IDE to utilize Prettier by configuring a plug-in.  Instructions for most IDE's can be found at [https://github.com/prettier/prettier#editor-integration](https://github.com/prettier/prettier#editor-integration).
 
 ## HTML
 
@@ -82,37 +92,6 @@ var myFunc = function(arg) {
 ### Guidelines
  * Lines should not exceed 100 characters.
 
-### Arrays
-
-Arrays with single items can be defined on a single line.
-```javascript
-var arr = ['foo'];
-```
-
-Arrays with multiple items should be defined on multiple lines.
-```javascript
-var arr = [
-    'foo',
-    'bar'
-];
-```
-
-### Array of Objects
-The following format is preferred when creating an array of objects.
-```javascript
-
-var objects = [{
-    firstName: 'John',
-    lastName: 'Tavares'
-}, {
-    firstName: 'Ryan',
-    lastName: 'Strome'
-}, {
-    firstName: 'Frans',
-    lastName: 'Nielsen'
-}];
-
-```
 
 ## Vue.js
 
@@ -615,14 +594,17 @@ JT-1234: Ticket name
 
 ## Code Reviews ([Crucible](https://crucible.teamexos.com/cru/browse/EFE))
  
- * A code review should be opened for all tickets except where the code change is trivial.
+ * Before a Crucible code review can be completed, a review must first be created in Beanstalk to kick off the Utopia process.  Please refer to the Utopia documentation for more details.
+ * A code review should be opened for all tickets, except where the code change is trivial.
  * Code reviews can be opened by appending `+EFE` to the end of a commit message or through JIRA.
  * Add any new code changes to an existing review instead of opening a new review.
  * Remove dist/build files from reviews.
  * Add the FE tech lead for the project as one reviewer and an additional reviewer.  The second reviewer should be either another developer with relevant subject matter knowledge or the developer who you selected as a reviewer on a code review least recently.
 
 
+
 ### Closing Reviews
 * A review can only be closed when all review comments have been addressed and at least two front-end developers have marked the review as complete.
 * The front-end lead is responsible for closing reviews in their respective projects.
+* The results showing successful completion of Utopia integration testing must be pasted into the Crucible ticket description (a Jenkins link is fine) before a Crucible review can be closed.
 * Once a review is closed the corresponding ticket should be marked as "Done" and any branches for the ticket should be merged.
