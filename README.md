@@ -90,7 +90,11 @@ var myFunc = function(arg) {
  ```
 
 ### Guidelines
- * Lines should not exceed 100 characters.
+ * Avoid using Array.prototype.forEach() for mutating data arrays. Use functions as .map() and .reduce() instead that return new arrays.
+ * Also avoid using functions that mutate data structures such as Array.prototype.reverse().
+ * Within AngularJS Services and Controllers, functions should not mutate the existing values and should instead take inputs and return a new value whenever possible.
+ * When working with Vue.js, add new properties to data objects using  Vue.set().
+ * Use strict mode for Vue.js/Vuex (only mutate data using Vuex mutations) and MobX (only mutate data using actions).
 
 
 ## Vue.js
