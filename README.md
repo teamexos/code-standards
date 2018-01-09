@@ -90,7 +90,7 @@ var myFunc = function(arg) {
  ```
 
 ### Guidelines
- * Avoid using Array.prototype.forEach() for mutating data arrays. Use functions as .map() and .reduce() instead that return new arrays.
+ * Avoid using Array.prototype.forEach() to iterate through and mutate data arrays. Instead, use functions such as .map() and .reduce() that return new arrays.
  * Also avoid using functions that mutate data structures such as Array.prototype.reverse().
  * Within AngularJS Services and Controllers, functions should not mutate the existing values and should instead take inputs and return a new value whenever possible.  Side effects should be avoided.
  * When working with Vue.js, add new properties to data objects using  Vue.set().
