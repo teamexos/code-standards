@@ -111,7 +111,7 @@ minimum the following stesp should be taken:
 
 *  In situations where  `v-html` was required in order to output HTML in a template, a sanitization library must be used and 
 the code must be subjected to strict scrutiny during the code review process. 
-* Injection of raw user input, whether provided through an HTML form or throw a URL parameter, into an AngularJS template 
+* Injection of raw user input, whether provided through an HTML form or throw a URL parameter, into an Vue.js template 
 should never be permitted without sanitization.  
 
 ## AngularJS
