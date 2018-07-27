@@ -105,14 +105,13 @@ We follow style guide standards, all the way up to Priority C in the official [V
 For state management in greenfield Vue.js projects, we utilize [Vuex](https://vuex.vuejs.org/en/). Please refer to the Vuex style guide in the FE Engineering Google Site. For projects that mix Vue.js and AngularJS, we utilize the [MobX](https://mobx.js.org/) library to add reactivity.
 
 
-### XSS 
+### XSS in Vue.js
 Cross-site scripting (XSS) enables attackers to inject client-side scripts into web pages viewed by other users.  In order to avoid creating XSS vulnerabilities in the front end code, at the very
 minimum the following stesp should be taken:
 
 *  In situations where  `v-html` was required in order to output HTML in a template, a sanitization library must be used and 
 the code must be subjected to strict scrutiny during the code review process. 
-* Injection of raw user input, whether provided through an HTML form or throw a URL parameter, into an Vue.js template 
-should never be permitted without sanitization.  
+* Injection of raw user input directly into an Vue.js template should never be permitted without sanitization.  
 
 ## AngularJS
 
@@ -523,14 +522,13 @@ function Directive() {
 
 ```
 
-### XSS 
+### XSS in AngularJS
 Cross-site scripting (XSS) enables attackers to inject client-side scripts into web pages viewed by other users.  In order to avoid creating XSS vulnerabilities in the front end code, at the very
 minimum the following stesp should be taken:
 
 *  In situations where  `ng-bind-html` or `$sce.trustAsHtml()` was required in order to output HTML in a template, strict scrutiny 
 must be applied during the code review of such code.
-* Injection of raw user input, whether provided through an HTML form or throw a URL parameter, into an AngularJS template 
-should never be permitted without sanitization.  
+* Injection of raw user input directly into an AngularJS template should never be permitted without sanitization.  
 
 ## CSS ([SCSS](http://sass-lang.com/))
 
