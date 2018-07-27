@@ -110,7 +110,7 @@ Cross-site scripting (XSS) enables attackers to inject client-side scripts into 
 minimum the following stesp should be taken:
 
 *  In situations where  `v-html` was required in order to output HTML in a template, a sanitization library must be used and 
-the code must be subjected to strict scrutiiny during the code review process. 
+the code must be subjected to strict scrutiny during the code review process. 
 * Injection of raw user input, whether provided through an HTML form or throw a URL parameter, into an AngularJS template 
 should never be permitted without sanitization.  
 
