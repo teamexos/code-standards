@@ -64,7 +64,7 @@ Always include spaces between curly braces.
  * The ? and : in a ternary conditional must have space on both sides.
  * `if` / `else` / `for` / `while` / `try` blocks should always use braces and always go on multiple lines.
  * No space before opening parenthesis in function declaration.
- 
+
 ```javascript
 if (isEnabled) {
     ...
@@ -109,9 +109,28 @@ For state management in greenfield Vue.js projects, we utilize [Vuex](https://vu
 Cross-site scripting (XSS) enables attackers to inject client-side scripts into web pages viewed by other users.  In order to avoid creating XSS vulnerabilities in the front end code, at the very
 minimum the following stesp should be taken:
 
-*  In situations where  `v-html` was required in order to output HTML in a template, a sanitization library must be used and 
-the code must be subjected to strict scrutiny during the code review process. 
+*  In situations where  `v-html` was required in order to output HTML in a template, a sanitization library must be used and
+the code must be subjected to strict scrutiny during the code review process.
 * Injection of raw user input directly into an Vue.js template should never be permitted without sanitization.  
+
+
+### Internationalization in Vue.js
+If a project's requirement call for internationalization or support multiple languages and/or locales, the plugin Vue-i18n should be used along with a front-end JavaScript `translations.js` file which holds the needed translations is the following format:
+
+```export default {
+    en: {
+        message: {
+            login: 'Login',
+        },
+    },
+    ja: {
+        message: {
+            login: '世界',
+        },
+    },
+};```
+
+In order to handle error messages from the server, we should use error codes rather than error messages from the API in order to translate messages on the front end.
 
 ## AngularJS
 
@@ -126,7 +145,7 @@ Wrap components in an immediately-invoked function expression (IIFE), passing in
     'use strict';
 
     var module = angular.module('WebApp');
-    
+
 }(angular));
 ```
 
@@ -172,7 +191,7 @@ The main JS file should be used to register the component, `module.config`, `mod
 
     Directive.$inject = [];
 
-    function Directive() { 
+    function Directive() {
     }
 
 })(angular);
@@ -204,7 +223,7 @@ All Angular modules should define their dependencies using the [$inject property
 module.controller('MyController', Controller);
 
 Controller.$inject = ['MyService'];
-    
+
 function Controller(MyService) {
 
 }
@@ -213,7 +232,7 @@ function Controller(MyService) {
 
 Modules with multiple dependencies should define each on a new line.
 ```javascript
-    
+
 module.controller('MyController', Controller);
 
 Controller.$inject = [
@@ -313,7 +332,7 @@ function Config($stateProvider) {
         return MyService.fetchData();
 
     }
-    
+
 }
 
 ```
@@ -368,22 +387,22 @@ const detail = angular
 ### Services
 
 * Names should be UpperCamelCase and contain the `Service` suffix. `MyAppService`
-* Each service returns a public object, named after the service. 
+* Each service returns a public object, named after the service.
 
 ```javascript
 
 module.factory('MyService', Service);
 
 function Service() {
-    
+
     var MyService = {};
-    
+
     MyService.getDetails = function() {
         ...
     };
-    
+
     return MyService;
-    
+
 }
 ```
 
@@ -436,11 +455,11 @@ module.controller('MyController', Controller);
 Controller.$inject = ['MyService'];
 
 function Controller(MyService) {
-    
+
     var vm = this;
-    
+
     vm.firstName = MyService.details.firstName;
-    
+
 }
 
 ```
@@ -526,7 +545,7 @@ function Directive() {
 Cross-site scripting (XSS) enables attackers to inject client-side scripts into web pages viewed by other users.  In order to avoid creating XSS vulnerabilities in the front end code, at the very
 minimum the following stesp should be taken:
 
-*  In situations where  `ng-bind-html` or `$sce.trustAsHtml()` was required in order to output HTML in a template, strict scrutiny 
+*  In situations where  `ng-bind-html` or `$sce.trustAsHtml()` was required in order to output HTML in a template, strict scrutiny
 must be applied during the code review of such code.
 * Injection of raw user input directly into an AngularJS template should never be permitted without sanitization.  
 
@@ -604,16 +623,16 @@ JT-1234: Ticket name
 
 ## The Process for Determining Whether or not to Add a New Library to Journey UI
 
-* Start a thread in the #fe-developers Slack channel so that we can discuss the inclusion of this library as a team. 
+* Start a thread in the #fe-developers Slack channel so that we can discuss the inclusion of this library as a team.
     * Please state the reason why the library is needed (timeline, complexity or benefits from adding a library that is an industry standard and will be useful elsewhere in Journey UI)
     * Include information about how much the vendor bundle size would be increased by the addition of the new library.  You can use the [Webpack Bundle Analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer) for this.
-    * During this discussion, team members should be able to add their past experiences using the library and/or make alternate recommendation. 
+    * During this discussion, team members should be able to add their past experiences using the library and/or make alternate recommendation.
     * When adding the library to the project's `package.json` file, make sure to use an exact version number or use `~` with the version number instead of `^`.
 * Once the library has been informally approved in the previous step, add all of the relevant information (bundle size addition, etc.) to the relevant JIRA ticket.
 * Be sure to try a Webpack build to confirm that the new module will build properly using `npm run build`.
 
 ## Code Reviews ([Crucible](https://crucible.teamexos.com/cru/browse/EFE))
- 
+
  * Before a Crucible code review can be completed, a review must first be created in Beanstalk to kick off the Utopia process.  Please refer to the Utopia documentation for more details.
  * A code review should be opened for all tickets, except where the code change is trivial.
  * Code reviews can be opened by appending `+EFE` to the end of a commit message or through JIRA.
