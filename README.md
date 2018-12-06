@@ -100,14 +100,16 @@ var myFunc = function(arg) {
 ## Vue.js
 
 ### Vue.js Style Guide
-We follow style guide standards, all the way up to Priority C in the official [Vue.js Style Guide](https://vuejs.org/v2/style-guide/).  
+We follow style guide standards, all the way up to Priority D in the official [Vue.js Style Guide](https://vuejs.org/v2/style-guide/), with the following exceptions:  
+* [Base component names](https://vuejs.org/v2/style-guide/#Base-component-names-strongly-recommended)
+* [Single instance component names](https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recommended)
 
 For state management in greenfield Vue.js projects, we utilize [Vuex](https://vuex.vuejs.org/en/). Please refer to the Vuex style guide in the FE Engineering Google Site. For projects that mix Vue.js and AngularJS, we utilize the [MobX](https://mobx.js.org/) library to add reactivity.
 
 
 ### XSS in Vue.js
 Cross-site scripting (XSS) enables attackers to inject client-side scripts into web pages viewed by other users.  In order to avoid creating XSS vulnerabilities in the front end code, at the very
-minimum the following stesp should be taken:
+minimum the following steps should be taken:
 
 *  In situations where  `v-html` was required in order to output HTML in a template, a sanitization library must be used and
 the code must be subjected to strict scrutiny during the code review process.
