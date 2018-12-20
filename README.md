@@ -83,6 +83,7 @@ var myFunc = function(arg) {
  ```
  * Use fat arrow functions whenever possible (`const nameList = itemList.map(item => item.name)`)
  * Don't use `for` loops unless absolutely necessary and instead use more a more declarative coding style (`map()`, `filter()`, `reduce()`)
+ * Use block level scoping (`const` or `let`) for declaring variables instead of `var` whenever possible.  For variables that will have values assigned just once, use `const` instead of `let`.
  * When using ES6 imports, only import what you will use.
 
  ```javascript
