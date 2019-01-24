@@ -96,7 +96,7 @@ function returnFirst(arr) {
   return arr.slice(0,1)
 }
 
-returnFirst(itemList)
+const firstItem = returnFirst(itemList)
 ```
 
 ### Recommendations (for Webpack/Babel projects)
