@@ -70,9 +70,28 @@ if (isEnabled) {
     ...
 }
 
-var myFunc = function(arg) {
+const myFunc = function(arg) {
     ...
 };
+```
+* Always use `const` or `let` to declare variables. Not doing so will result in global variables. 
+* Use one `const` or `let` declaration per variable or assignment. 
+```javascript
+// bad
+const items = getItems(),
+    goSportsTeam = true,
+    dragonball = 'z';
+
+// bad
+// (compare to above, and try to spot the mistake)
+const items = getItems(),
+    goSportsTeam = true;
+    dragonball = 'z';
+
+// good
+const items = getItems();
+const goSportsTeam = true;
+const dragonball = 'z';
 ```
 * Use pure functions whenever possible (functions take arguments and return a value without mutating values outside of the function's scope).  An exception would be when creating handler functions that are triggered by DOM events.    
 
