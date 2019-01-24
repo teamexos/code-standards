@@ -74,25 +74,6 @@ const myFunc = function(arg) {
     ...
 };
 ```
-* Always use `const` or `let` to declare variables. Not doing so will result in global variables. 
-* Use one `const` or `let` declaration per variable or assignment. 
-```javascript
-// bad
-const items = getItems(),
-    goSportsTeam = true,
-    dragonball = 'z';
-
-// bad
-// (compare to above, and try to spot the mistake)
-const items = getItems(),
-    goSportsTeam = true;
-    dragonball = 'z';
-
-// good
-const items = getItems();
-const goSportsTeam = true;
-const dragonball = 'z';
-```
 * Use pure functions whenever possible (functions take arguments and return a value without mutating values outside of the function's scope).  An exception would be when creating handler functions that are triggered by DOM events.    
 
 ```javascript
@@ -108,7 +89,7 @@ console.log(itemList)  \\ [1, 2, 3, 4]
 ```
 
 ```javascript
-// better
+// good
 let itemList = []
 
 function returnFirst(arr) {
@@ -127,6 +108,23 @@ const firstItem = returnFirst(itemList)
  * Use fat arrow functions whenever possible (`const nameList = itemList.map(item => item.name)`)
  * Don't use `for` loops unless absolutely necessary and instead use more a more declarative coding style (`map()`, `filter()`, `reduce()`)
  * Use block level scoping (`const` or `let`) for declaring variables instead of `var` whenever possible.  For variables that will have values assigned just once, use `const` instead of `let`.
+ * Use one const or let declaration per variable or assignment. According to the Airbnb JavaScript style guide:
+ >>  Why? It’s easier to add new variable declarations this way, and you never have to worry about swapping out a ; for a , or introducing punctuation-only diffs. You can also step through each declaration with the debugger, instead of jumping through all of them at once.
+ // bad
+const items = getItems(),
+    goSportsTeam = true,
+    dragonball = 'z';
+
+// bad
+// (compare to above, and try to spot the mistake)
+const items = getItems(),
+    goSportsTeam = true;
+    dragonball = 'z';
+
+// good
+const items = getItems();
+const goSportsTeam = true;
+const dragonball = 'z';
  * When using ES6 imports, only import what you will use.
 
  ```javascript
