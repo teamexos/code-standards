@@ -84,7 +84,7 @@ function returnFirst(arr) {
   return arr.shift()
 }
 
-returnFirst(itemList)
+const firstItem = returnFirst(itemList)
 console.log(itemList)  \\ [1, 2, 3, 4]
 ```
 
