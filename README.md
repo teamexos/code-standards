@@ -74,6 +74,30 @@ var myFunc = function(arg) {
     ...
 };
 ```
+* Use pure functions whenever possible (functions take arguments and return a value without mutating values outside of the function's scope).  An exception would be when creating handler functions that are triggered by DOM events.    
+
+```javascript
+// bad
+let itemList  = [0, 1, 2, 3, 4]
+
+function returnFirst(arr) {
+  return arr.shift()
+}
+
+returnFirst(itemList)
+console.log(itemList)  \\ [1, 2, 3, 4]
+```
+
+```javascript
+// better
+let itemList = []
+
+function returnFirst(arr) {
+  return arr.slice(0,1)
+}
+
+returnFirst(itemList)
+```
 
 ### Recommendations (for Webpack/Babel projects)
  * When working in a project that utilizes the Babel transpiler, use string templating instead of concatenation whenever possible.
