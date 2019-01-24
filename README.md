@@ -110,6 +110,7 @@ const firstItem = returnFirst(itemList)
  * Use block level scoping (`const` or `let`) for declaring variables instead of `var` whenever possible.  For variables that will have values assigned just once, use `const` instead of `let`.
  * Use one const or let declaration per variable or assignment. [According to the Airbnb JavaScript style guide](https://github.com/airbnb/javascript#variables--one-const):
  >>  Why? It’s easier to add new variable declarations this way, and you never have to worry about swapping out a ; for a , or introducing punctuation-only diffs. You can also step through each declaration with the debugger, instead of jumping through all of them at once.
+ ```javascript
  // bad
 const items = getItems(),
     goSportsTeam = true,
@@ -125,6 +126,7 @@ const items = getItems(),
 const items = getItems();
 const goSportsTeam = true;
 const dragonball = 'z';
+```
  * When using ES6 imports, only import what you will use.
 
  ```javascript
