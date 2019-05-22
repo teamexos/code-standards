@@ -60,7 +60,15 @@ Always include spaces between curly braces.
 
 ### General Rules
  * Always use single quotes
- * Use camelCase for all variables
+ * Use camelCase for all variable names
+ * When creating data objects, use snake case for key names
+ ```javascript
+ const obj = {
+   user_id: 1,
+   first_name: 'John',
+   last_name: 'Doe',   
+ }
+ ```
  * The ? and : in a ternary conditional must have space on both sides.
  * `if` / `else` / `for` / `while` / `try` blocks should always use braces and always go on multiple lines.
  * No space before opening parenthesis in function declaration.
@@ -141,6 +149,11 @@ const dragonball = 'z';
  * Use strict mode for Vue.js/Vuex (only mutate data using Vuex mutations) and MobX (only mutate data using actions).
 
 
+## TypeScript
+
+## Usage
+Currently, we are using just basic types.  For more information, please refer to the official TypeScript [documention](https://www.typescriptlang.org/docs/handbook/basic-types.html).
+
 ## Vue.js
 
 ### Vue.js Style Guide
@@ -195,7 +208,9 @@ Wrap components in an immediately-invoked function expression (IIFE), passing in
 }(angular));
 ```
 
-### Component Structure
+## AngularJS
+
+### AngularJS - Component Structure
  * Components should be as modular as possible.
  *  If a component has more than one file it should be in it's own directory.
  * The name of the directory and it's files should match the name of the component in kebab-case.
@@ -260,7 +275,7 @@ var module = angular.module('ParentModule.ChildModule.GrandChildModule', [
 
 ```
 
-### Dependency Injection
+### AngularJS - Dependency Injection
 
 All Angular modules should define their dependencies using the [$inject property annotation](https://docs.angularjs.org/guide/di#-inject-property-annotation).
 
@@ -340,7 +355,7 @@ class OverviewController {
 ```
 
 
-### Routes ([ui-router](http://angular-ui.github.io/ui-router/site/#/api/ui.router))
+### AngularJS - Routes ([ui-router](http://angular-ui.github.io/ui-router/site/#/api/ui.router))
 
 * URLs should end with a slash.
 * Always include templates in separate files and use `templateUrl`. Exception to this is when defining an abstract state and the template is `<ui-view/>`'.
@@ -430,7 +445,7 @@ const detail = angular
 ```
 
 
-### Services
+### AngularJS - Services
 
 * Names should be UpperCamelCase and contain the `Service` suffix. `MyAppService`
 * Each service returns a public object, named after the service.
@@ -487,7 +502,7 @@ class WorkoutDetailService {
 export default WorkoutDetailService;
 ```
 
-### Controllers
+### AngularJS - Controllers
 
 * Names should be UpperCamelCase and contain the `Controller` suffix.  `MyAppController`
 * Controllers should be as slim as possible. Keep logic in Services and Directives.
@@ -559,7 +574,7 @@ class OverviewController {
 }
 ```
 
-### Directives
+### AngularJS - Directives
 
 * Use `bindToController` property to avoid using `$scope` in controller.
 * Follow rules of component structure, dependency injection, and controllers.
@@ -667,7 +682,7 @@ JT-1234: Ticket name
 
 ```
 
-## The Process for Determining Whether or not to Add a New Library to Journey UI
+## The Process for Determining Whether or not to Add a New Library to a Project
 
 * Start a thread in the #fe-developers Slack channel so that we can discuss the inclusion of this library as a team.
     * Please state the reason why the library is needed (timeline, complexity or benefits from adding a library that is an industry standard and will be useful elsewhere in Journey UI)
@@ -677,19 +692,4 @@ JT-1234: Ticket name
 * Once the library has been informally approved in the previous step, add all of the relevant information (bundle size addition, etc.) to the relevant JIRA ticket.
 * Be sure to try a Webpack build to confirm that the new module will build properly using `npm run build`.
 
-## Code Reviews ([Crucible](https://crucible.teamexos.com/cru/browse/EFE))
 
- * Before a Crucible code review can be completed, a review must first be created in Beanstalk to kick off the Utopia process.  Please refer to the Utopia documentation for more details.
- * A code review should be opened for all tickets, except where the code change is trivial.
- * Code reviews can be opened by appending `+EFE` to the end of a commit message or through JIRA.
- * Add any new code changes to an existing review instead of opening a new review.
- * Remove dist/build files from reviews.
- * Add the FE tech lead for the project as one reviewer and an additional reviewer.  The second reviewer should be either another developer with relevant subject matter knowledge or the developer who you selected as a reviewer on a code review least recently.
-
-
-
-### Closing Reviews
-* A review can only be closed when all review comments have been addressed and at least two front-end developers have marked the review as complete.
-* The front-end lead is responsible for closing reviews in their respective projects.
-* The results showing successful completion of Utopia integration testing must be pasted into the Crucible ticket description (a Jenkins link is fine) before a Crucible review can be closed.
-* Once a review is closed the corresponding ticket should be marked as "Done" and any branches for the ticket should be merged.
