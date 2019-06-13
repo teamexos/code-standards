@@ -116,8 +116,20 @@ const firstItem = returnFirst(itemList)
  * Use fat arrow functions whenever possible (`const nameList = itemList.map(item => item.name)`)
  * Don't use `for` loops unless absolutely necessary and instead use more a more declarative coding style (`map()`, `filter()`, `reduce()`)
  * Use block level scoping (`const` or `let`) for declaring variables instead of `var` whenever possible.  For variables that will have values assigned just once, use `const` instead of `let`.
+ * When handling promises, use `async`/`await` whenever feasible, instead of callbacks.  However, always wrap the `await` in a `try`/`catch` block when handling API responses.
+ ````javascript
+const getLocations = async () => {
+  try {
+    const resp = await RequestPromise(options)
+    return resp;
+  }
+  catch (err) {
+    console.log(err)
+  }
+}
+```` 
  * Use one `const` or `let` declaration per variable or assignment. [According to the Airbnb JavaScript style guide](https://github.com/airbnb/javascript#variables--one-const):
- >>  Why? It’s easier to add new variable declarations this way, and you never have to worry about swapping out a ; for a , or introducing punctuation-only diffs. You can also step through each declaration with the debugger, instead of jumping through all of them at once.
+  >>  Why? It’s easier to add new variable declarations this way, and you never have to worry about swapping out a ; for a , or introducing punctuation-only diffs. You can also step through each declaration with the debugger, instead of jumping through all of them at once.
  ```javascript
  // bad
 const items = getItems(),
