@@ -37,6 +37,14 @@ import { i18n } from '@/lang';
 import router from '@/router';
 
 describe('SeminarEventDetail', () => {
+
+    const post = jest.fn();
+    jest.mock('@/store/utils/members-api', () => {
+        return {
+            post
+        };
+    });
+
     const localVue = initLocalVue();
     const mountOptions = {
         localVue,
@@ -75,6 +83,7 @@ describe('SeminarEventDetail', () => {
         });
         expect(wrapper).toMatchSnapshot();
         expect(wrapper.contains('input[type="email"]')).toBe(true);
+        expect(post.mock.calls.length).toBe(1);
     });
 });
 ```
