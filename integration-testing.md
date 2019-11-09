@@ -6,13 +6,13 @@
 
 
 
-#### What are they?
+### What are they?
 
 Integration tests are very similar to unit tests but instead of testing a single component it tests the interactions of multiple components together. Because of their similarity to unit tests, integration tests are written and ran using the same framework and commands as unit tests. While integration tests can be written for any type of code we will focus mainly on writing tests for components.
 
 
 
-#### When should I write an integration test?
+### When should I write an integration test?
 
 As a rule, at EXOS, at the very least **all route-level components should have an accompanying integration test**. Other conditions when an integration test may be necessary are:
 
@@ -22,7 +22,7 @@ As a rule, at EXOS, at the very least **all route-level components should have a
 
 
 
-#### How do I write an integration test?
+### How do I write an integration test?
 
 Writing a integration test is nearly identical to writing a unit test. The main difference is the child components of the component you are testing are not stubbed. So while a unit test may "shallow mount" the component it wants to test, an integration test will just "mount" the component, allowing its children to be rendered and included in what's being tested.
 
@@ -81,7 +81,7 @@ describe('SeminarEventDetail', () => {
 
 
 
-#### What types of things should I assert?
+### What types of things should I assert?
 
 Some assertions your integration test may want to validate are:
 
@@ -94,7 +94,7 @@ Some assertions your integration test may want to validate are:
 
 
 
-#### What dependencies should I allow and which should I stub/mock?
+### What dependencies should I allow and which should I stub/mock?
 
 All API results should be mocked, and if query/url params are referenced then you should also mock the route object.
 
@@ -102,7 +102,7 @@ The following items can be mocked but are not required: vuex modules, router, ut
 
 
 
-#### What's our standards and best practices for writing integration tests?
+### What's our standards and best practices for writing integration tests?
 
 Check out the [unit testing guide](/) for the coding standards and best practices for writing integration tests.
 
