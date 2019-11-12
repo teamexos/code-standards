@@ -22,6 +22,7 @@ We should write tests that test a component in isolation, which means they shoul
 
 ### Best Practices
 
+- Start by first by writing an overview of what the component is supposed to do.
 - Use the [Vue Test Utils library](https://github.com/vuejs/vue-test-utils) and refer to the [documentation](https://vue-test-utils.vuejs.org/) on that site.
 - Shallow mount component
 - Component contract must be tested 
