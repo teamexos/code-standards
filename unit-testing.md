@@ -39,6 +39,7 @@ We should write tests that test a component in isolation, which means they shoul
 - Implementation details should not be covered
     - This means not covering private methods
     - Not testing implementation details makes unit tests more useful for facilitating code refactoring
+- Tests should be written in organized and readable manner, so that they can serve as developer documentation
     
 Example:
 
