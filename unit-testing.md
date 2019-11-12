@@ -36,6 +36,8 @@ We should write tests that test a component in isolation, which means they shoul
         - Rendered output
         - External functions
         - Vuex interactions with actions or mutations
+- Include snapshot tests for components
+    - For dynamic components, remember to mock all inputs to make your tests deterministic
 - Implementation details should not be covered
     - This means not covering private methods
     - Not testing implementation details makes unit tests more useful for facilitating code refactoring
@@ -75,6 +77,15 @@ const sections = [
 ];
 
 describe('AssessmentProgress.vue', () => {
+    test('It should render correctly', () => {
+        expect(shallowMount(AssessmentProgress, {
+            propsData: {
+                sections: [],
+                current: [0, 0]
+            }
+        }))
+        .toMatchSnapshot();
+    });
     test('It should mount even with falsy values', () => {
         const wrapper = shallowMount(AssessmentProgress, {
             propsData: {
