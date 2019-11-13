@@ -32,25 +32,32 @@ Example:
 import { mount } from '@vue/test-utils';
 import { initLocalVue } from '../utils';
 import SeminarEventDetail from '@/views/seminars/seminar-event-detail.vue';
-import store from '@/store';
 import { i18n } from '@/lang';
-import router from '@/router';
+import Vuex from 'vuex';
+import staff from '@/store/modules/staff';
+import members from '@/store/modules/members';
+
+jest.mock('@/router');
 
 describe('SeminarEventDetail', () => {
 
-    const post = jest.fn();
-    jest.mock('@/store/utils/members-api', () => {
-        return {
-            post
-        };
-    });
-
     const localVue = initLocalVue();
+
     const mountOptions = {
         localVue,
         i18n,
-        store,
-        router,
+        store: new Vuex.Store({
+            modules: {
+                staff,
+                members,
+            },
+        }),
+        mocks: {
+            $route: {
+                params: {},
+                query: {},
+            }
+        }
     };
 
     it('should display the correct output', () => {
@@ -58,13 +65,12 @@ describe('SeminarEventDetail', () => {
         expect(wrapper).toMatchSnapshot();
     });
 
-    it('should update date in parent when changed in grandchild', () => {
-        const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
+    it('should render children', () => {
         const wrapper = mount(SeminarEventDetail, mountOptions);
+        const timePicker = wrapper.find({ name: 'time-picker' });
         const datePicker = wrapper.find({ name: 'date-picker' });
-        datePicker.vm.updateSelectedDate(yesterday);
-        expect(wrapper.vm.selected.date.iso).toBe(yesterday.toISOString());
+        expect(timePicker.contains('select.custom-select')).toBe(true);
+        expect(datePicker.contains('[placeholder="Select a date"]')).toBe(true);
     });
 
     it('should not contain email field', () => {
@@ -78,12 +84,12 @@ describe('SeminarEventDetail', () => {
             mocks: {
                 $route: {
                     params: { id: '123' },
+                    query: {},
                 }
             }
         });
         expect(wrapper).toMatchSnapshot();
         expect(wrapper.contains('input[type="email"]')).toBe(true);
-        expect(post.mock.calls.length).toBe(1);
     });
 });
 ```
