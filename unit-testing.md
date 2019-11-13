@@ -34,15 +34,18 @@ We should write tests that test a component in isolation, which means they shoul
     - Component outputs
         - Emitted events
         - Rendered output
+            - Include snapshot tests for components
+                - This can serve as verification of proper rendering 
+                - For dynamic components, remember to mock all inputs to make your tests deterministic
         - Function call
+            - When a component's output is to call an external function, use a spy to verify that the function was called
         - Vuex interactions with actions or mutations
-- Include snapshot tests for components
-    - This can serve as verification of proper rendering 
-    - For dynamic components, remember to mock all inputs to make your tests deterministic
+- When testing component output
+    - Test only output that is dynamically generated
+    - Test only output that is a part of the component contract
 - Implementation details should not be covered
     - This means not covering private methods
     - Not testing implementation details makes unit tests more useful for facilitating code refactoring
-- When a component's output is to call a function, use a spy to verify that the function was called
 - Tests should be written in organized and readable manner, so that they can serve as developer documentation
     
 Example:
