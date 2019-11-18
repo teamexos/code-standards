@@ -131,6 +131,18 @@ describe('AssessmentProgress.vue', () => {
     });
 });
 ```
+### Articles and reference on Vue testing:
+
+Official docs and cookbook info: 
+- https://vuejs.org/v2/guide/unit-testing.html 
+- https://vuejs.org/v2/cookbook/unit-testing-vue-components.html 
+
+Vuex also has documentation on testing: 
+- https://vue-test-utils.vuejs.org/guides/using-with-vuex.html 
+
+More info that could be useful:
+- A bit old but Laracasts always has good gems: https://laracasts.com/series/testing-vue 
+- Vue mastery seems to have a unit testing course coming up: https://www.vuemastery.com/courses 
 
 
 
