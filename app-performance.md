@@ -28,7 +28,7 @@ Our goals:
 - Removes doubt (gradual progress reassures people that the app is working).
 
 #### Progressive loading with Skeleton Screens
-- In progressive loading individual element becomes visible as soon as it is loaded, it helps in displaying the content that is exactly loaded and what is yet to be loaded.
+- In progressive loading an individual element becomes visible as soon as it is loaded, it helps in displaying the content that is exactly loaded and what is yet to be loaded.
 - Skeleton screen is a low fidelity UI into which information is gradually loaded. It gives users a visual cue that the content is being loaded into each UI element.
 - While implementing progressive loading in the skeleton screen we should keep in mind the goal we are trying achieve with the product and prioritize the loading content accordingly.
 
