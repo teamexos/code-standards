@@ -29,6 +29,8 @@ Writing a integration test is nearly identical to writing a unit test. The main 
 Example:
 
 ```javascript
+jest.mock('@/router');
+
 import { mount } from '@vue/test-utils';
 import { initLocalVue } from '../utils';
 import SeminarEventDetail from '@/views/seminars/seminar-event-detail.vue';
@@ -36,8 +38,6 @@ import { i18n } from '@/lang';
 import Vuex from 'vuex';
 import staff from '@/store/modules/staff';
 import members from '@/store/modules/members';
-
-jest.mock('@/router');
 
 describe('SeminarEventDetail', () => {
 

@@ -14,18 +14,18 @@ Put simply, unit tests are functions that call functions in your source code in 
 
 ### When should I write a unit test?
 
-As a rule, at EXOS, you should write unit tests for every non-routed component.  
+As a rule, at EXOS, you should write unit tests for every non-routed component.
 
 ### How do I write a unit test?
 
-We should write tests that test a component in isolation, which means they should be shallow mounted.  The tests should be focused on testing the component contract. 
+We should write tests that test a component in isolation, which means they should be shallow mounted.  The tests should be focused on testing the component contract.
 
 ### Best Practices
 
 - Start by first by writing an overview of what the component is supposed to do.
 - Use the [Vue Test Utils library](https://github.com/vuejs/vue-test-utils) and refer to the [documentation](https://vue-test-utils.vuejs.org/) on that site.
 - Shallow mount component
-- Component contract must be tested 
+- Component contract must be tested
     - Component inputs
         - Component props
         - User actions
@@ -35,7 +35,7 @@ We should write tests that test a component in isolation, which means they shoul
         - Emitted events
         - Rendered output
             - Include snapshot tests for components
-                - This can serve as verification of proper rendering 
+                - This can serve as verification of proper rendering
                 - For dynamic components, remember to mock all inputs to make your tests deterministic
         - Function call
             - When a component's output is to call an external function, use a spy to verify that the function was called
@@ -49,7 +49,8 @@ We should write tests that test a component in isolation, which means they shoul
 - Tests should be written in organized and readable manner, so that they can serve as developer documentation
     - Unit tests make pull requests more reviewable
     - Unlike with separate documentation, a developer should be to rely upon unit tests as documentation with confidence
-    
+- If a module has a manual mock created (in a `__mocks__` folder local to the module) you must opt-in to use it at the top of your test (see [integration test example](integration-testing.md)). Since jest hoists all jest.mock() functions to the top of the file it is best practice to define them there to avoid confusion.
+
 Example:
 
 ```javascript
@@ -133,16 +134,16 @@ describe('AssessmentProgress.vue', () => {
 ```
 ### Articles and reference on Vue testing:
 
-Official docs and cookbook info: 
-- https://vuejs.org/v2/guide/unit-testing.html 
-- https://vuejs.org/v2/cookbook/unit-testing-vue-components.html 
+Official docs and cookbook info:
+- https://vuejs.org/v2/guide/unit-testing.html
+- https://vuejs.org/v2/cookbook/unit-testing-vue-components.html
 
-Vuex also has documentation on testing: 
-- https://vue-test-utils.vuejs.org/guides/using-with-vuex.html 
+Vuex also has documentation on testing:
+- https://vue-test-utils.vuejs.org/guides/using-with-vuex.html
 
 More info that could be useful:
-- A bit old but Laracasts always has good gems: https://laracasts.com/series/testing-vue 
-- Vue mastery seems to have a unit testing course coming up: https://www.vuemastery.com/courses 
+- A bit old but Laracasts always has good gems: https://laracasts.com/series/testing-vue
+- Vue mastery seems to have a unit testing course coming up: https://www.vuemastery.com/courses
 
 
 
