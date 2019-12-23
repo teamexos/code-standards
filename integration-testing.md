@@ -29,67 +29,78 @@ Writing a integration test is nearly identical to writing a unit test. The main 
 Example:
 
 ```javascript
-import { mount } from '@vue/test-utils';
-import { initLocalVue } from '../utils';
-import SeminarEventDetail from '@/views/seminars/seminar-event-detail.vue';
-import { i18n } from '@/lang';
-import Vuex from 'vuex';
-import staff from '@/store/modules/staff';
-import members from '@/store/modules/members';
-
+// Opt-in to mocks at the beginning of the file (no matter where you put them in the test, jest will hoist him here anyway)
 jest.mock('@/router');
+jest.mock('@/store/modules/members/seminars');
+jest.mock('@/store/modules/members/seminars/categories');
+jest.mock('@/store/modules/members/seminars/registrations');
+jest.mock('@/store/modules/members/seminars/events');
+jest.mock('@/store/modules/account/clients');
+jest.mock('@/store/modules/account/auth');
 
-describe('SeminarEventDetail', () => {
+import { mount } from '@vue/test-utils';
+import { getMountOptions, getStoreModules } from '../utils';
+import SeminarManager from '@/views/seminars/seminar-manager.vue';
 
-    const localVue = initLocalVue();
+describe('SeminarManager', () => {
 
-    const mountOptions = {
-        localVue,
-        i18n,
-        store: new Vuex.Store({
-            modules: {
-                staff,
-                members,
-            },
-        }),
-        mocks: {
-            $route: {
-                params: {},
-                query: {},
-            }
-        }
-    };
+    // Define shared resources here rather then per test
+    // Below grabs a reference to the mocked stores so we can verify actions are being called in our tests.
+    const seminarCategoryStore = require('@/store/modules/members/seminars/categories').default;
+    const seminarsStore = require('@/store/modules/members/seminars').default;
 
-    it('should display the correct output', () => {
-        const wrapper = mount(SeminarEventDetail, mountOptions);
+    const mountOptions = getMountOptions({
+        created: function () {
+            this.isLoading = false;
+        },
+        stubs: ['router-link']
+    });
+
+    const wrapper = mount(SeminarManager, mountOptions);
+
+    it('should display the correct output when there is data', () => {
         expect(wrapper).toMatchSnapshot();
+        // Anytime we verify a snapshot we must also verify at least one element that should exist (this ensures we do not mistakenly approve PRs that have snapshots of the wrong state)
+        expect(wrapper.contains('.card-body input.form-control')).toBe(true);
     });
 
-    it('should render children', () => {
-        const wrapper = mount(SeminarEventDetail, mountOptions);
-        const timePicker = wrapper.find({ name: 'time-picker' });
-        const datePicker = wrapper.find({ name: 'date-picker' });
-        expect(timePicker.contains('select.custom-select')).toBe(true);
-        expect(datePicker.contains('[placeholder="Select a date"]')).toBe(true);
+    // Along with snapshot tests of the component with and without data we should write a test to verify any state changes that might happen inside the component or its children.
+    it('should be able to add category', () => {
+        expect(seminarCategoryStore.actions.add.mock.calls.length).toBe(0);
+        wrapper.type('.card-body input.form-control', 'New Category');
+        wrapper.click('.card-body .form-inline button.btn-secondary');
+        // Verify store actions have been called the correct number of times
+        expect(seminarCategoryStore.actions.add.mock.calls.length).toBe(1);
+        // Verify store actions have been called with the correct arguments
+        expect(seminarCategoryStore.actions.add.mock.calls[0][1].name).toBe('New Category');
     });
 
-    it('should not contain email field', () => {
-        const wrapper = mount(SeminarEventDetail, mountOptions);
-        expect(wrapper.contains('input[type="email"]')).toBe(false);
-    });
+    // We should also verify components work without any data.
+    it('should display the correct output when there is no data', () => {
+        const semStore = jest.requireActual('@/store/modules/members/seminars').default;
+        const semCatStore = jest.requireActual('@/store/modules/members/seminars/categories').default;
+        const semRegStore = jest.requireActual('@/store/modules/members/seminars/registrations').default;
+        const semEveStore = jest.requireActual('@/store/modules/members/seminars/events').default;
+        const clientsStore = jest.requireActual('@/store/modules/account/clients').default;
+        const authStore = jest.requireActual('@/store/modules/account/auth').default;
 
-    it('should contain email field', () => {
-        const wrapper = mount(SeminarEventDetail, {
-            ...mountOptions,
-            mocks: {
-                $route: {
-                    params: { id: '123' },
-                    query: {},
-                }
-            }
+        // Reset module states to their default states.
+        const modules = getStoreModules([
+            ['account.modules.clients.state', clientsStore.state],
+            ['account.modules.auth.state', authStore.state],
+            ['members.modules.seminars.state', semStore.state],
+            ['members.modules.seminars.modules.categories.state', semCatStore.state],
+            ['members.modules.seminars.modules.registrations.state', semRegStore.state],
+            ['members.modules.seminars.modules.events.state', semEveStore.state],
+        ]);
+        const mountOptions2 = getMountOptions({
+            modules
         });
+        const wrapper = mount(SeminarManager, mountOptions2);
         expect(wrapper).toMatchSnapshot();
-        expect(wrapper.contains('input[type="email"]')).toBe(true);
+        // Again anytime we run a snapshot test we should also add 1 or more assertions to verify that the snapshot is indeed correct.
+        expect(wrapper.findAll('.skeleton').length).toBe(1);
+        expect(wrapper.contains('.card-body input.form-control')).toBe(false);
     });
 });
 ```
@@ -119,7 +130,7 @@ The following items can be mocked but are not required: vuex modules, router, ut
 
 ### What's our standards and best practices for writing integration tests?
 
-Check out the [unit testing guide](/) for the coding standards and best practices for writing integration tests.
+Check out the [unit testing guide](/) for our coding standards and best practices for writing integration tests.
 
 
 
