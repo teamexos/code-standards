@@ -20,8 +20,25 @@ function calcTax(state: string, income: number, dependents: number) : number {
 ````
 ## Type Usage
 * Cast types using `as` syntax for clarity.  Diamonds (`< >`) should be used for generics only.
-* Do not use `any`, use a new `type` 
+* Do not use `any`.  You can use a union type instead.  Using a union type will allow your IDE's autocomplete feature prompt you with allowed argument types.
+````typescript
+let padding: string | number;
+````
 * Use `type` over `interface` for new types.  Use `interface` for inheritance purposes only.  
+````typescript
+type Patient = {
+  name: string;
+  height: Foot;
+  weight: Pound;
+}
+
+let patient: Patient = {
+    name: 'Joe Smith',
+    height: 5,
+    weight: 100
+}
+
+````
 * Always explicitly define a return type.
 ```typescript
 // bad
