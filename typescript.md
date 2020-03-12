@@ -20,6 +20,13 @@ function calcTax(state: string, income: number, dependents: number) : number {
 ````
 ## Type Usage
 * Cast types using `as` syntax for clarity.  Diamonds (`< >`) should be used for generics only.
+```typescript
+let myObject: TypeA;
+let otherObject: TypeB;
+
+myObject = otherObject as TypeA;    // using as keyword is better
+myObject = <TypeA> otherObject;     // using <> should be saved for generics
+```
 * Do not use `any`.  You can use a union type instead.  Using a union type will allow your IDE's autocomplete feature prompt you with allowed argument types.
 ````typescript
 let padding: string | number;
