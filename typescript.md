@@ -96,7 +96,7 @@ Currently, the standard is to use the Options API when writing Vue.js single-fil
 <template>
 </template>
 
-<script>
+<script lang="ts">
 import Vue, { VNode } from 'vue'
 
 export default Vue.extend({
