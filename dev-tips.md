@@ -13,6 +13,10 @@ Less is more. Delete elements from the DOM to see at what point the layout issue
 
 To develop for any of the instances using the local server but not the local docker installation, the verbose version of the serve command is available in the README file in most projects (e.g. `APP_ENV=detect yarn serve --host=exos-qa.exos.biz --https --port 3000`). This will adjust the client's API services run the application in https://exos-qa.exos.biz:3000. 
 
+### Node version and packages
+
+If a project has an `.nvmrc` file, make sure you use `nvm use` when opening it, since it usually indicates that it requires a specific node version, and compilation could fail if that specific version is used. 
+
 ## III. Git Solutions
 
 ### Changing a Commit Message
