@@ -17,6 +17,10 @@ To develop for any of the instances using the local server but not the local doc
 
 If a project has an `.nvmrc` file, make sure you use `nvm use` when opening it, since it usually indicates that it requires a specific node version, and compilation could fail if that specific version is used. 
 
+### Cross-browser development
+
+When testing for cross-browser support, instead of resourcing to a virtual machine, use the team's [SauceLab](https://app.saucelabs.com/) access, and use their local testing proxy tool (Sauce Connect Proxy) to fire up multiple browsers, platforms and versions using your locally served instance. 
+
 ## III. Git Solutions
 
 ### Changing a Commit Message
