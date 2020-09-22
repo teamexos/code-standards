@@ -160,6 +160,23 @@ minimum the following steps should be taken:
 the code must be subjected to strict scrutiny during the code review process.
 * Injection of raw user input directly into an Vue.js template should never be permitted without sanitization.  
 
+### Vue.js 3 Migration Standards
+We will be migrating to Vue.js 3 as soon as Nuxt.js version 3 is out.  In order to facilitate the eventual Vue.js 3 migration, we should avoid the following breaking changes from 2.x:
+* [Global Vue API is changed to use an application instance](https://v3.vuejs.org/guide/migration/global-api.html#a-new-global-api-createapp)
+* [Global and internal APIs have been restructured to be tree-shakable](https://v3.vuejs.org/guide/migration/global-api-treeshaking.html#_2-x-syntax)
+* [`v-model` usage on components has been reworked](https://v3.vuejs.org/guide/migration/v-model.html#overview)
+* `<template v-for>` key should be placed on the `<template>` tag (rather than on its children).
+  [https://v3.vuejs.org/guide/migration/key-attribute.html#overview](https://v3.vuejs.org/guide/migration/key-attribute.html#overview)
+* If used on the same element, v-if will have higher precedence than v-for [https://v3.vuejs.org/guide/migration/v-if-v-for.html#overview](https://v3.vuejs.org/guide/migration/v-if-v-for.html#overview)
+* [`v-bind="object"` is now order-sensitive](https://v3.vuejs.org/guide/migration/v-bind.html#overview)
+* [`ref` inside `v-for` no longer register an array of refs](https://v3.vuejs.org/guide/migration/array-refs.html)
+* [Functional components can only be created using a plain function](https://v3.vuejs.org/guide/migration/functional-components.html#overview)
+* [functional attribute on single-file component (SFC) <template> and functional component option are deprecated](https://v3.vuejs.org/guide/migration/functional-components.html#overview)
+* [Async components now require defineAsyncComponent method to be created](https://v3.vuejs.org/guide/migration/async-components.html#overview)
+* [Render function API changed](https://v3.vuejs.org/guide/migration/render-function-api.html#overview)
+* [`$scopedSlots` property is removed and all slots are exposed via $slots as functions](https://v3.vuejs.org/guide/migration/slots-unification.html#overview)
+* [Special `is` prop usage is restricted to the reserved `<component>` tag only](https://v3.vuejs.org/guide/migration/custom-elements-interop.html#customized-built-in-elements)
+* Please refer to the Vue.js [documentation](https://v3.vuejs.org/guide/migration/introduction.html#breaking-changes) for additional breaking changes
 
 ### Internationalization in Vue.js
 If a project's requirement call for internationalization or support multiple languages and/or locales, the plugin Vue-i18n should be used along with a front-end JavaScript `translations.js` file which holds the needed translations is the following format:
@@ -245,7 +262,7 @@ Mixins should be included at the end of the property definition with a new line 
 }
 ```
 
-## Commit Messages
+## Git Commit Messages
 
 Commit messages should follow the following format.
 
